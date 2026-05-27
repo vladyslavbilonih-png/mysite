@@ -1,0 +1,237 @@
+/* --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (КИБЕР-ТЕМАТИКА) --- */
+:root {
+    --bg-color: #090a0f;
+    --surface: #13151f;
+    --text-main: #a9b1d6;
+    --text-bright: #c0caf5;
+    --accent-1: #ff007c; /* Неоновый розовый */
+    --accent-2: #00f0ff; /* Неоновый циан */
+    --border-color: #292e42;
+}
+
+/* --- ОСНОВНОЙ ФОН И ШРИФТ --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Consolas', 'Courier New', monospace;
+    margin: 0;
+    padding: 5vh 5vw;
+    line-height: 1.8;
+    /* Создаем фон в виде технической сетки */
+    background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+h1, h2, h3 {
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: var(--text-bright);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-left: 5px solid var(--accent-1);
+    padding-left: 15px;
+    text-align: left;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 0, 124, 0.3);
+}
+
+/* --- КОНТЕЙНЕР-БЛОК --- */
+.content-block {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* Убираем закругления, делаем строгий стиль */
+    padding: 40px;
+    max-width: 1000px;
+    margin: 30px auto;
+    box-shadow: -8px 8px 0px rgba(0, 240, 255, 0.1);
+    position: relative;
+}
+
+/* Декоративный элемент в углу блоков */
+.content-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-top: 2px solid var(--accent-2);
+    border-right: 2px solid var(--accent-2);
+}
+
+/* --- СТИЛИЗАЦИЯ КНОПОК И НАВИГАЦИИ --- */
+.nav-link, ul li a, button.js-button, input[type="button"], input[type="submit"], input[type="reset"] {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px 5px;
+    background: transparent;
+    color: var(--accent-2) !important;
+    text-decoration: none;
+    border: 1px solid var(--accent-2);
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.1) inset;
+}
+
+.nav-link:hover, ul li a:hover, button.js-button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+    background: var(--accent-2);
+    color: var(--bg-color) !important;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+ul li {
+    flex: 1 1 auto;
+}
+
+/* --- ГАЛЕРЕЯ (ЛР 4) - Сохраняем логику слоев, меняем визуал --- */
+.gallery {
+    position: relative;
+    height: 450px;
+    margin: 60px auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+.gallery img {
+    position: absolute;
+    border: 2px solid var(--accent-1);
+    border-radius: 0;
+    box-shadow: 0 0 20px rgba(255, 0, 124, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: crosshair;
+    filter: grayscale(80%) contrast(120%);
+}
+
+#img1 { z-index: 1; left: 0px; top: 0px; width: 350px; }
+#img2 { z-index: 3; left: 220px; top: 80px; width: 380px; }
+#img3 { z-index: 2; left: 480px; top: 20px; width: 300px; }
+
+.gallery img:hover {
+    transform: scale(1.15) translateY(-10px);
+    z-index: 10 !important;
+    filter: grayscale(0%) contrast(110%);
+    box-shadow: 0 0 30px rgba(255, 0, 124, 0.6);
+    border-color: var(--text-bright);
+}
+
+/* --- КОЛОНКИ (ЛР 4) --- */
+.col-left, .col-right {
+    float: left;
+    width: 48%;
+    padding: 2.5%;
+    box-sizing: border-box; /* Саме цей рядок не дає блокам з'їжджати */
+}
+.col-left { border-right: 2px solid rgba(255, 255, 255, 0.5); }
+.clear { clear: both; }
+
+/* --- ТАБЛИЦЫ (ЛР 2) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    border: 1px solid var(--border-color);
+}
+
+th {
+    background-color: rgba(0, 240, 255, 0.1);
+    color: var(--accent-2);
+    padding: 15px;
+    border-bottom: 2px solid var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    text-align: left;
+}
+
+tr:hover td { 
+    background-color: rgba(255, 0, 124, 0.05); 
+    color: var(--text-bright);
+}
+
+/* Сброс инлайн-стилей таблицы через CSS-специфичность */
+tr[style*="background-color"] {
+    background-color: rgba(0, 240, 255, 0.05) !important;
+}
+
+/* --- ФОРМЫ (ЛР 5) --- */
+fieldset {
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+legend {
+    color: var(--accent-1);
+    font-weight: bold;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+input[type="text"], input[type="password"], input[type="search"], textarea, select {
+    background: #0d0e15;
+    border: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--accent-1);
+    color: var(--text-bright);
+    padding: 12px;
+    width: 100%;
+    margin: 10px 0 20px 0;
+    font-family: inherit;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent-2);
+    outline: none;
+    box-shadow: 0 10px 20px -10px rgba(0, 240, 255, 0.3);
+    background: rgba(0, 240, 255, 0.05);
+}
+
+/* --- ВИДЕО И КАРТА --- */
+.video-container iframe, .informer-container iframe {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    filter: sepia(20%) hue-rotate(180deg); /* Придаем видео/карте холодный оттенок */
+}
+
+/* --- ПОДВАЛ (ЛР 6) --- */
+.site-footer {
+    background: var(--surface);
+    color: var(--text-main);
+    padding: 40px;
+    text-align: center;
+    border-top: 2px solid var(--accent-1);
+    margin-top: 60px;
+}
+
+.site-footer a {
+    color: var(--accent-2);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px var(--accent-2);
+}
